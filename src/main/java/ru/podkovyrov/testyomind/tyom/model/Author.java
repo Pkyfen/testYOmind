@@ -24,7 +24,7 @@ public class Author {
     private String login;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Check> checks;
+    private List<Yotest> yotests;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")

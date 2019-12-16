@@ -12,8 +12,8 @@ import static ru.podkovyrov.testyomind.tyom.model.EntityConstrainConstants.NOT_E
 
 @Entity
 @Data
-@Table(name = "Check")
-public class Check {
+@Table(name = "Yotest")
+public class Yotest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,7 +37,7 @@ public class Check {
     @Column(name = "status")
     private Status status;
 
-    @OneToMany(mappedBy = "check", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "yotest", cascade = CascadeType.ALL)
     private List<User> User;
 }
 

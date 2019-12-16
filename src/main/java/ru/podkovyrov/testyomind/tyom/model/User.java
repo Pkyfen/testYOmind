@@ -25,6 +25,6 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "Check_id")
     @JsonIgnore
-    private Check check;
+    private Yotest yotest;
 
 }
