@@ -16,9 +16,16 @@
 
     <properties>
         <java.version>11</java.version>
+        <h2database.version>1.4.199</h2database.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <jacoco-maven-plugin.lines-coverage-ratio>50%</jacoco-maven-plugin.lines-coverage-ratio>
         <jacoco-maven-plugin.methods-coverage-ratio>50%</jacoco-maven-plugin.methods-coverage-ratio>
+        <liquibase.version>3.6.3</liquibase.version>
+        <liquibase-maven-plugin.version>3.5.5</liquibase-maven-plugin.version>
+        <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
+        <javassist.version>3.25.0-GA</javassist.version>
+        <javax.validation.version>2.0.1.Final</javax.validation.version>
+        <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
     </properties>
 
     <dependencies>
@@ -50,6 +57,7 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
             <version>3.8.0</version>
+
         </dependency>
 
 
@@ -78,9 +86,32 @@
             <version>0.9.0</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2database.version}</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -137,6 +168,39 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase-maven-plugin.version}</version>
+                <configuration>
+                    <propertyFile>${project.build.outputDirectory}/liquibase-maven-plugin.properties</propertyFile>
+                    <logging>info</logging>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.liquibase.ext</groupId>
+                        <artifactId>liquibase-hibernate5</artifactId>
+                        <version>${liquibase-hibernate5.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-data-jpa</artifactId>
+                        <version>${spring-boot.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.validation</groupId>
+                        <artifactId>validation-api</artifactId>
+                        <version>${javax.validation.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                        <version>${javassist.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
         </plugins>
     </build>
 
