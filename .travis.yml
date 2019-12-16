@@ -1,0 +1,23 @@
+language: java
+install: true
+
+os: linux
+dist: trusty
+jdk: oraclejdk11
+
+env:
+  global:
+    - CC_TEST_REPORTER_ID=99e5dca5e2ace762d3666426e10e5db890ef36b15eb4a0cb344dcb1ccd0a8582
+    - JACOCO_SOURCE_PATH=src/main/java
+
+script:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn test -B
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+after_script:
+  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter format-coverage target/site/jacoco/jacoco.xml -t jacoco; fi
