@@ -15,11 +15,13 @@
     <description>project to create online tests or surveys</description>
 
     <properties>
+        <jacoco-maven-plugin.lines-coverage-ratio>10%</jacoco-maven-plugin.lines-coverage-ratio>
+        <jacoco-maven-plugin.methods-coverage-ratio>10%</jacoco-maven-plugin.methods-coverage-ratio>
+
+
         <java.version>11</java.version>
         <h2database.version>1.4.199</h2database.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
-        <jacoco-maven-plugin.lines-coverage-ratio>50%</jacoco-maven-plugin.lines-coverage-ratio>
-        <jacoco-maven-plugin.methods-coverage-ratio>50%</jacoco-maven-plugin.methods-coverage-ratio>
         <liquibase.version>3.6.3</liquibase.version>
         <liquibase-maven-plugin.version>3.5.5</liquibase-maven-plugin.version>
         <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
