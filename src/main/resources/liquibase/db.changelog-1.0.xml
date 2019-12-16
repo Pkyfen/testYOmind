@@ -20,13 +20,13 @@
 
         </createTable>
 
-        <createTable tableName="Check">
+        <createTable tableName="Yotest">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
             <column name="Author_id" type="BIGINT">
-                <constraints references="Author(id)" foreignKeyName="fk_check_author"/>
+                <constraints references="Author(id)" foreignKeyName="fk_yotest_author"/>
             </column>
 
             <column name="Title" type="VARCHAR(255)">
@@ -38,9 +38,10 @@
             </column>
 
             <column name="Current_question" type="BIGINT">
+                <constraints nullable="true"/>
             </column>
 
-            <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
+            <column name="status" type="VARCHAR(255)" defaultValue="ACTIVE">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -53,8 +54,8 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="Check_id" type="BIGINT">
-                <constraints references="Check(id)" foreignKeyName="fk_user_check"/>
+            <column name="Yotest_id" type="BIGINT">
+                <constraints references="Yotest(id)" foreignKeyName="fk_user_yotest"/>
             </column>
 
             <column name="Name" type="VARCHAR(255)">
